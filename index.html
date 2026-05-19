@@ -146,14 +146,14 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo" onclick="navigateTo('home')">BrandName</div>
+        <div class="logo" onclick="window.location.hash = 'home'">BrandName</div>
     </nav>
 
     <!-- Home Page Section -->
-    <main id="home-view" class="view active">
+    <main id="home-view" class="view">
         <h1>Design with Elegance,<br>Build with Precision.</h1>
         <p>Welcome to a clean, minimalist space engineered for optimal user experience. This layout provides a solid foundation for any modern web application or landing page.</p>
-        <a href="#" class="btn">Get Started</a>
+        <a href="#terms" class="btn">Get Started</a>
     </main>
 
     <!-- Terms of Service Section -->
@@ -201,69 +201,51 @@
     <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a href="/home" onclick="handleLinkClick(event, 'home')">Home</a>
-            <a href="/terms" onclick="handleLinkClick(event, 'terms')">Terms of Service</a>
-            <a href="/privacy" onclick="handleLinkClick(event, 'privacy')">Privacy Policy</a>
+            <a href="#home">Home</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#privacy">Privacy Policy</a>
         </div>
         <p>&copy; 2026 BrandName. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript Routing Logic -->
+    <!-- JavaScript Routing Logic for GitHub Pages -->
     <script>
-        // Mapping slugs to DOM view element IDs
+        // Configuration des routes associées aux hashes
         const routes = {
-            'home': 'home-view',
-            'terms': 'terms-view',
-            'privacy': 'privacy-view'
+            '#home': 'home-view',
+            '#terms': 'terms-view',
+            '#privacy': 'privacy-view'
         };
 
-        // Handles standard click events on footer links
-        function handleLinkClick(event, slug) {
-            event.preventDefault();
-            navigateTo(slug);
-        }
-
-        // Updates the UI view and pushes state to the URL history
-        function navigateTo(slug) {
-            const viewId = routes[slug] || 'home-view';
-            displayView(viewId);
+        function router() {
+            // Récupère le hash actuel (par défaut #home si vide)
+            const hash = window.location.hash || '#home';
             
-            // Appends the slug cleanly to the current URL domain
-            const path = slug === 'home' ? window.location.pathname : `/${slug}`;
-            history.pushState({ viewId }, "", path);
-        }
-
-        // Direct rendering switch
-        function displayView(viewId) {
+            // Trouve la vue correspondante ou bascule sur home par défaut
+            const viewId = routes[hash] || 'home-view';
+            
+            // Masque toutes les sections
             const views = document.querySelectorAll('.view');
             views.forEach(view => view.classList.remove('active'));
             
+            // Affiche la section demandée
             const selectedView = document.getElementById(viewId);
             if (selectedView) {
                 selectedView.classList.add('active');
             }
+            
+            // Remonte le scroll
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Handles browser back and forward button operations
-        window.addEventListener('popstate', (event) => {
-            if (event.state && event.state.viewId) {
-                displayView(event.state.viewId);
-            } else {
-                // Default fallback if state is cleared
-                displayView('home-view');
-            }
-        });
-
-        // Initial setup check for current path URL on load
+        // Écoute les changements d'URL via le hash et le chargement initial
+        window.addEventListener('hashchange', router);
         window.addEventListener('DOMContentLoaded', () => {
-            const path = window.location.pathname.replace(/^\//, '');
-            if (routes[path]) {
-                displayView(routes[path]);
-                // Set initial state matching current path
-                history.replaceState({ viewId: routes[path] }, "", window.location.pathname);
+            // Force le hash par défaut si aucun n'est présent à l'arrivée
+            if (!window.location.hash) {
+                window.location.hash = 'home';
             } else {
-                history.replaceState({ viewId: 'home-view' }, "", window.location.pathname);
+                router();
             }
         });
     </script>
