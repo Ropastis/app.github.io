@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jpnbuzz_netabare - Social Media Management Platform</title>
+    
+    <!-- Favicon utilisant votre fichier local logo_debunk.png -->
+    <link rel="icon" type="image/png" href="logo_debunk.png">
+
     <style>
         /* Reset & Base Styles */
         * {
@@ -40,6 +44,16 @@
             font-weight: 700;
             color: #0d6efd;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Style pour calibrer l'image locale en format thumbnail */
+        nav .logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
         }
 
         /* Content Views */
@@ -168,11 +182,15 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo" onclick="window.location.hash = 'home'">jpnbuzz_netabare</div>
+        <div class="logo" onclick="window.location.hash = 'home'">
+            <!-- Logo d'en-tête utilisant votre fichier logo_debunk.png -->
+            <img src="logo_debunk.png" alt="Logo">
+            <span>jpnbuzz_netabare</span>
+        </div>
     </nav>
 
     <!-- Home Page Section -->
-    <main id="home-view" class="view">
+    <main id="home-view" class="view active">
         <h1>Optimize Your TikTok Presence with Precision.</h1>
         <p>jpnbuzz_netabare is a comprehensive social media management platform designed for content creators, agencies, and businesses to schedule content, publish seamlessly, and analyze performance metrics in one central dashboard.</p>
         
@@ -249,7 +267,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer>
         <div class="footer-links">
             <a href="#home">Home</a>
@@ -261,7 +279,6 @@
 
     <!-- JavaScript Routing Logic for GitHub Pages -->
     <script>
-        // Configuration des routes associées aux hashes
         const routes = {
             '#home': 'home-view',
             '#terms': 'terms-view',
@@ -269,30 +286,22 @@
         };
 
         function router() {
-            // Récupère le hash actuel (par défaut #home si vide)
             const hash = window.location.hash || '#home';
-            
-            // Trouve la vue correspondante ou bascule sur home par défaut
             const viewId = routes[hash] || 'home-view';
             
-            // Masque toutes les sections
             const views = document.querySelectorAll('.view');
             views.forEach(view => view.classList.remove('active'));
             
-            // Affiche la section demandée
             const selectedView = document.getElementById(viewId);
             if (selectedView) {
                 selectedView.classList.add('active');
             }
             
-            // Remonte le scroll
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Écoute les changements d'URL via le hash et le chargement initial
         window.addEventListener('hashchange', router);
         window.addEventListener('DOMContentLoaded', () => {
-            // Force le hash par défaut si aucun n'est présent à l'arrivée
             if (!window.location.hash) {
                 window.location.hash = 'home';
             } else {
