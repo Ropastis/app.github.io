@@ -146,7 +146,7 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo" onclick="showView('home-view')">BrandName</div>
+        <div class="logo" onclick="navigateTo('home')">BrandName</div>
     </nav>
 
     <!-- Home Page Section -->
@@ -201,29 +201,71 @@
     <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a href="#" onclick="showView('home-view'); return false;">Home</a>
-            <a href="#" onclick="showView('terms-view'); return false;">Terms of Service</a>
-            <a href="#" onclick="showView('privacy-view'); return false;">Privacy Policy</a>
+            <a href="/home" onclick="handleLinkClick(event, 'home')">Home</a>
+            <a href="/terms" onclick="handleLinkClick(event, 'terms')">Terms of Service</a>
+            <a href="/privacy" onclick="handleLinkClick(event, 'privacy')">Privacy Policy</a>
         </div>
         <p>&copy; 2026 BrandName. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript Navigation Logic -->
+    <!-- JavaScript Routing Logic -->
     <script>
-        function showView(viewId) {
-            // Hide all views
+        // Mapping slugs to DOM view element IDs
+        const routes = {
+            'home': 'home-view',
+            'terms': 'terms-view',
+            'privacy': 'privacy-view'
+        };
+
+        // Handles standard click events on footer links
+        function handleLinkClick(event, slug) {
+            event.preventDefault();
+            navigateTo(slug);
+        }
+
+        // Updates the UI view and pushes state to the URL history
+        function navigateTo(slug) {
+            const viewId = routes[slug] || 'home-view';
+            displayView(viewId);
+            
+            // Appends the slug cleanly to the current URL domain
+            const path = slug === 'home' ? window.location.pathname : `/${slug}`;
+            history.pushState({ viewId }, "", path);
+        }
+
+        // Direct rendering switch
+        function displayView(viewId) {
             const views = document.querySelectorAll('.view');
             views.forEach(view => view.classList.remove('active'));
             
-            // Show the selected view
             const selectedView = document.getElementById(viewId);
             if (selectedView) {
                 selectedView.classList.add('active');
             }
-            
-            // Scroll to top of the page smoothly
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Handles browser back and forward button operations
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.viewId) {
+                displayView(event.state.viewId);
+            } else {
+                // Default fallback if state is cleared
+                displayView('home-view');
+            }
+        });
+
+        // Initial setup check for current path URL on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const path = window.location.pathname.replace(/^\//, '');
+            if (routes[path]) {
+                displayView(routes[path]);
+                // Set initial state matching current path
+                history.replaceState({ viewId: routes[path] }, "", window.location.pathname);
+            } else {
+                history.replaceState({ viewId: 'home-view' }, "", window.location.pathname);
+            }
+        });
     </script>
 </body>
 </html>
