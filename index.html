@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Elegance</title>
+    <title>jpnbuzz_netabare - Social Media Management Platform</title>
     <style>
         /* Reset & Base Styles */
         * {
@@ -75,9 +75,31 @@
             line-height: 1.6;
         }
 
+        .features {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex: 1;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            color: #111;
+        }
+
         .btn {
-            display: inline-block;
-            background-color: #0d6efd;
+            display: inline-flex;
+            align-items: center;
+            background-color: #000000;
             color: white;
             padding: 0.8rem 2rem;
             border-radius: 50px;
@@ -87,7 +109,7 @@
         }
 
         .btn:hover {
-            background-color: #0b5ed7;
+            background-color: #222222;
         }
 
         /* Legal Views Styles */
@@ -146,14 +168,32 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo" onclick="window.location.hash = 'home'">BrandName</div>
+        <div class="logo" onclick="window.location.hash = 'home'">jpnbuzz_netabare</div>
     </nav>
 
     <!-- Home Page Section -->
     <main id="home-view" class="view">
-        <h1>Design with Elegance,<br>Build with Precision.</h1>
-        <p>Welcome to a clean, minimalist space engineered for optimal user experience. This layout provides a solid foundation for any modern web application or landing page.</p>
-        <a href="#terms" class="btn">Get Started</a>
+        <h1>Optimize Your TikTok Presence with Precision.</h1>
+        <p>jpnbuzz_netabare is a comprehensive social media management platform designed for content creators, agencies, and businesses to schedule content, publish seamlessly, and analyze performance metrics in one central dashboard.</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>📊 Advanced Analytics</h3>
+                <p>Track your content stats, profile performance, and user engagement metrics over time.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚀 Seamless Publishing</h3>
+                <p>Upload and schedule videos or photos directly to your feed via our secure content delivery system.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 Secure Auth</h3>
+                <p>Connect your account reliably using TikTok's secure official Login Kit framework.</p>
+            </div>
+        </div>
+
+        <a href="#home" class="btn" onclick="alert('Authentication process initiates here.'); return false;">
+            Continue with TikTok
+        </a>
     </main>
 
     <!-- Terms of Service Section -->
@@ -205,7 +245,7 @@
             <a href="#terms">Terms of Service</a>
             <a href="#privacy">Privacy Policy</a>
         </div>
-        <p>&copy; 2026 BrandName. All rights reserved.</p>
+        <p>&copy; 2026 jpnbuzz_netabare. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript Routing Logic for GitHub Pages -->
