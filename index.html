@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Elegance</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #ffffff;
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0d6efd;
+            cursor: pointer;
+        }
+
+        /* Content Views */
+        .view {
+            display: none;
+            padding: 8rem 10% 4rem 10%;
+            flex: 1;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* Home View Styles */
+        #home-view {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #home-view h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: #111;
+        }
+
+        #home-view p {
+            font-size: 1.25rem;
+            color: #6c757d;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #0d6efd;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0b5ed7;
+        }
+
+        /* Legal Views Styles */
+        .legal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .legal-content h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+
+        .legal-content h2 {
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.4rem;
+        }
+
+        .legal-content p {
+            color: #495057;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111111;
+            color: #a0a0a0;
+            padding: 2rem 10%;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        footer .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        footer .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.2s;
+        }
+
+        footer .footer-links a:hover {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="showView('home-view')">BrandName</div>
+    </nav>
+
+    <!-- Home Page Section -->
+    <main id="home-view" class="view active">
+        <h1>Design with Elegance,<br>Build with Precision.</h1>
+        <p>Welcome to a clean, minimalist space engineered for optimal user experience. This layout provides a solid foundation for any modern web application or landing page.</p>
+        <a href="#" class="btn">Get Started</a>
+    </main>
+
+    <!-- Terms of Service Section -->
+    <main id="terms-view" class="view">
+        <div class="legal-content">
+            <h1>Terms of Service</h1>
+            <p>Last updated: May 2026</p>
+            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #dee2e6;">
+            
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
+            
+            <h2>2. Use License</h2>
+            <p>Permission is granted to temporarily download one copy of the materials on this website for personal, non-commercial transitory viewing only.</p>
+            
+            <h2>3. Disclaimer</h2>
+            <p>The materials on this website are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties including, without limitation, implied warranties of merchantability or fitness for a particular purpose.</p>
+            
+            <h2>4. Limitations</h2>
+            <p>In no event shall we or our suppliers be liable for any damages arising out of the use or inability to use the materials on this website.</p>
+        </div>
+    </main>
+
+    <!-- Privacy Policy Section -->
+    <main id="privacy-view" class="view">
+        <div class="legal-content">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: May 2026</p>
+            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #dee2e6;">
+            
+            <h2>1. Information We Collect</h2>
+            <p>We collect information you provide directly to us when creating an account, subscribing to our newsletter, or communicating with us.</p>
+            
+            <h2>2. How We Use Information</h2>
+            <p>We use the information we collect to maintain, protect, and improve our services, as well as to develop new features.</p>
+            
+            <h2>3. Information Sharing</h2>
+            <p>We do not share your personal information with companies, organizations, or individuals outside of our company unless one of the following circumstances applies: with your consent, for external processing, or for legal reasons.</p>
+            
+            <h2>4. Data Security</h2>
+            <p>We work hard to protect our users from unauthorized access to or unauthorized alteration, disclosure, or destruction of information we hold.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" onclick="showView('home-view'); return false;">Home</a>
+            <a href="#" onclick="showView('terms-view'); return false;">Terms of Service</a>
+            <a href="#" onclick="showView('privacy-view'); return false;">Privacy Policy</a>
+        </div>
+        <p>&copy; 2026 BrandName. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Navigation Logic -->
+    <script>
+        function showView(viewId) {
+            // Hide all views
+            const views = document.querySelectorAll('.view');
+            views.forEach(view => view.classList.remove('active'));
+            
+            // Show the selected view
+            const selectedView = document.getElementById(viewId);
+            if (selectedView) {
+                selectedView.classList.add('active');
+            }
+            
+            // Scroll to top of the page smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
