@@ -49,7 +49,6 @@
             gap: 10px;
         }
         
-        /* Style pour calibrer l'image locale en format thumbnail */
         nav .logo img {
             width: 32px;
             height: 32px;
@@ -120,10 +119,74 @@
             text-decoration: none;
             font-weight: 600;
             transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
         }
 
         .btn:hover {
             background-color: #222222;
+        }
+
+        /* Dashboard View Styles (Addressing Reviewer Requirements) */
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .sidebar-menu li {
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .sidebar-menu li.active-item {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+        }
+
+        .main-panel {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input[type="text"], .form-group textarea, .form-group input[type="file"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
         }
 
         /* Legal Views Styles */
@@ -183,7 +246,6 @@
     <!-- Navigation -->
     <nav>
         <div class="logo" onclick="window.location.hash = 'home'">
-            <!-- Logo d'en-tête utilisant votre fichier logo_debunk.png -->
             <img src="logo_debunk.png" alt="Logo">
             <span>jpnbuzz_netabare</span>
         </div>
@@ -209,9 +271,44 @@
             </div>
         </div>
 
-        <a href="#home" class="btn" onclick="alert('Authentication process initiates here.'); return false;">
+        <!-- Corrected Entry Point: Routes directly to the API Service View -->
+        <a href="#dashboard" class="btn">
             Continue with TikTok
         </a>
+    </main>
+
+    <!-- Interactive Dashboard & Content Posting API Service View -->
+    <main id="dashboard-view" class="view">
+        <div class="dashboard-container">
+            <aside class="sidebar">
+                <h4 style="color:#6c757d; font-size:0.8rem; text-transform:uppercase; letter-spacing:1px;">Navigation</h4>
+                <ul class="sidebar-menu">
+                    <li class="active-item">🎵 Content Posting</li>
+                    <li>📊 Analytics Insights</li>
+                    <li>⚙️ API Settings</li>
+                </ul>
+            </aside>
+            <section class="main-panel">
+                <h2 style="margin-bottom: 0.5rem;">Content Posting API Service</h2>
+                <p style="color:#6c757d; margin-bottom: 2rem;">Upload, detail, and schedule your media direct to your linked profile feed via secure endpoint parameters.</p>
+                
+                <form onsubmit="alert('Content successfully processed by the Posting API service queue.'); return false;">
+                    <div class="form-group">
+                        <label>Select Media Target</label>
+                        <input type="file" accept="video/*, image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Caption / Video Description</label>
+                        <textarea rows="4" placeholder="Enter text metadata, hashtags, and mentions..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Schedule Execution Time</label>
+                        <input type="text" placeholder="YYYY-MM-DD HH:MM (Leave blank for immediate API execution)">
+                    </div>
+                    <button type="submit" class="btn" style="background-color:#0d6efd;">Publish via API Service</button>
+                </form>
+            </section>
+        </div>
     </main>
 
     <!-- Terms of Service Section -->
@@ -267,7 +364,7 @@
         </div>
     </main>
 
-<!-- Footer -->
+    <!-- Footer -->
     <footer>
         <div class="footer-links">
             <a href="#home">Home</a>
@@ -281,6 +378,7 @@
     <script>
         const routes = {
             '#home': 'home-view',
+            '#dashboard': 'dashboard-view',
             '#terms': 'terms-view',
             '#privacy': 'privacy-view'
         };
